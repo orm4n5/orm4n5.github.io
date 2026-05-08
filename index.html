@@ -3,63 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>orm4n5 Apps - 公式サイト</title>
+    <title>orm4n5 App Studio - 公式サイト</title>
     <style>
-        /* シンプルでモダンなデザイン */
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f9f9f9; }
-        header { background-color: #4285f4; color: white; padding: 2rem 1rem; text-align: center; }
-        .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-        .app-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; }
-        .app-icon { width: 80px; height: 80px; border-radius: 18px; margin-right: 1.5rem; background-color: #eee; }
-        .app-info { flex: 1; }
-        .app-name { font-size: 1.25rem; font-weight: bold; margin: 0 0 0.5rem 0; }
-        .app-desc { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
-        .links a { display: inline-block; margin-right: 1rem; text-decoration: none; font-size: 0.9rem; font-weight: bold; color: #4285f4; }
-        .links a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 2rem; color: #888; font-size: 0.8rem; }
+        :root {
+            --primary-color: #1a73e8;
+            --accent-color: #34a853;
+            --text-main: #202124;
+            --text-sub: #5f6368;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 1rem 0 0;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -2rem auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .app-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .app-desc {
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .btn-play {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-play:hover {
+            background-color: #1557b0;
+        }
+
+        .btn-privacy {
+            background-color: transparent;
+            color: var(--text-sub);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid #dadce0;
+            transition: all 0.2s;
+        }
+
+        .btn-privacy:hover {
+            background-color: #f1f3f4;
+            color: var(--text-main);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 3rem 1rem; }
+            header h1 { font-size: 1.8rem; }
+            .app-card { padding: 1.5rem; }
+            .links { flex-direction: column; }
+            .btn-play, .btn-privacy { text-align: center; justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>orm4n5 App Studio</h1> <p>Androidアプリの紹介とサポート</p>
+    <h1>orm4n5 App Studio</h1>
+    <p>Androidアプリの紹介とサポート</p>
 </header>
 
 <div class="container">
 
+    <!-- TSUMORI貯金 -->
     <div class="app-card">
-        <div class="app-info">
-            <h2 class="app-name">TSUMORI貯金 (つもり貯金)</h2> <p class="app-desc">
-                貯めたつもりで楽しく節約！あなたの貯金生活をサポートするアプリです。
-            </p> <div class="links">
-                <a href="https://play.google.com/store/apps/details?id=com.ormsng.tsumori&pcampaignid=web_share">Google Playストア</a>
-                <a href="privacy_tsumori.html">プライバシーポリシー</a> </div>
+        <h2 class="app-name">TSUMORI貯金 (つもり貯金)</h2>
+        <p class="app-desc">
+            貯めたつもりで楽しく節約！支出を抑えたいあなたのための、シンプルで続けやすい貯金サポートアプリです。
+        </p>
+        <div class="links">
+            <a href="https://play.google.com/store/apps/details?id=com.ormsng.tsumori&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
+            <a href="privacy_tsumori.html" class="btn-privacy">プライバシーポリシー</a>
         </div>
     </div>
 
+    <!-- PROMPT STORAGE -->
     <div class="app-card">
-        <div class="app-info">
-            <h2 class="app-name">PROMPT STORAGE - AIプロンプト保存＆コピー</h2>
-            <p class="app-desc">
-                一瞬でコピーできるスマホ運用に特化したプロンプト保管庫
-            </p>
-            <div class="links">
-                <a href="https://play.google.com/store/apps/details?id=com.orishin.prompt_storage&pcampaignid=web_share">Google Playストア</a>
-                <a href="privacy_promptstorage.html">プライバシーポリシー</a>
-            </div>
+        <h2 class="app-name">PROMPT STORAGE</h2>
+        <p class="app-desc">
+            AIプロンプトをスマートに管理。スマホでの運用に特化し、一瞬でコピー＆ペーストが可能なプロンプト保管庫です。
+        </p>
+        <div class="links">
+            <a href="https://play.google.com/store/apps/details?id=com.orishin.prompt_storage&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
+            <a href="privacy_promptstorage.html" class="btn-privacy">プライバシーポリシー</a>
         </div>
     </div>
 
-  　<div class="app-card">
-        <div class="app-info">
-            <h2 class="app-name">推しポモドーロタイマー (OshiPoMo)</h2>
-            <p class="app-desc">
-                好きな画像を表示できるandroid用ポモドーロタイマー。
-            </p>
-            <div class="links">
-                <a href="https://play.google.com/store/apps/details?id=com.orishin.oshipomo&pcampaignid=web_share">Google Playストア</a>
-                <a href="privacy_oshipomo.html">プライバシーポリシー</a>
-            </div>
+    <!-- OshiPoMo -->
+    <div class="app-card">
+        <h2 class="app-name">推しポモドーロタイマー (OshiPoMo)</h2>
+        <p class="app-desc">
+            好きな画像を見守られながら作業に集中。カスタマイズ性の高いAndroid用ポモドーロタイマーです。
+        </p>
+        <div class="links">
+            <a href="https://play.google.com/store/apps/details?id=com.orishin.oshipomo&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
+            <a href="privacy_oshipomo.html" class="btn-privacy">プライバシーポリシー</a>
+        </div>
+    </div>
+
+    <!-- ダブルタイマー -->
+    <div class="app-card">
+        <h2 class="app-name">ダブルタイマーアプリ</h2>
+        <p class="app-desc">
+            ひとつの画面で2つのカウントダウンを同時に管理できる、ミニマルでおしゃれなダイアル式タイマー。
+        </p>
+        <div class="links">
+            <a href="https://play.google.com/store/apps/details?id=com.orishin.w_timer&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
+            <a href="https://orm4n5.github.io/privacy_doubletimer.html" class="btn-privacy">プライバシーポリシー</a>
+        </div>
+    </div>
+
+    <!-- JSONビューア＆エディター -->
+    <div class="app-card">
+        <h2 class="app-name">JSONビューア＆エディター</h2>
+        <p class="app-desc">
+            複雑なJSONファイルを、スマホで「読みやすく」「書き換えやすく」。デバッグから設定ファイルの変更まで、PCがない環境で活躍するツールです。
+        </p>
+        <div class="links">
+            <a href="https://play.google.com/store/apps/details?id=com.orishin.jsonviewer&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
+            <a href="https://orm4n5.github.io/privacy_json.html" class="btn-privacy">プライバシーポリシー</a>
         </div>
     </div>
 
