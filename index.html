@@ -12,6 +12,7 @@
             --text-sub: #5f6368;
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
+            --disabled-color: #dadce0;
         }
 
         body {
@@ -71,8 +72,6 @@
             font-weight: 700;
             margin: 0 0 0.75rem 0;
             color: var(--primary-color);
-            display: flex;
-            align-items: center;
         }
 
         .app-desc {
@@ -104,6 +103,14 @@
 
         .btn-play:hover {
             background-color: #1557b0;
+        }
+
+        /* 公開準備中ボタン */
+        .btn-soon {
+            background-color: var(--disabled-color);
+            color: #70757a;
+            cursor: default;
+            pointer-events: none;
         }
 
         .btn-privacy {
@@ -141,8 +148,8 @@
 <body>
 
 <header>
-    <h1>Studio orishin</h1>
-    <p>Androidアプリの紹介</p>
+    <h1>orm4n5 App Studio</h1>
+    <p>Androidアプリの紹介とサポート</p>
 </header>
 
 <div class="container">
@@ -207,9 +214,34 @@
         </div>
     </div>
 
+    <!-- サブスク管理マネージャー -->
+    <div class="app-card">
+        <h2 class="app-name">サブスク管理マネージャー</h2>
+        <p class="app-desc">
+            サブスクリプションを賢く一覧管理。解約シミュレーションで見直し・節約もできる、サブスク料金を「見える化」するアプリです。
+        </p>
+        <div class="links">
+            <a href="#" class="btn-play btn-soon">Google Play 公開準備中</a>
+            <a href="https://orm4n5.github.io/privacy_subsc.html" class="btn-privacy">プライバシーポリシー</a>
+        </div>
+    </div>
+
+    <!-- Screen-Filter -->
+    <div class="app-card">
+        <h2 class="app-name">Screen-Filter</h2>
+        <p class="app-desc">
+            スマホの「見られたくない」を解決。通知パネルから即起動し、外出先でのプライバシーを守る覗き見防止フィルターアプリです。
+        </p>
+        <div class="links">
+            <a href="#" class="btn-play btn-soon">Google Play 公開準備中</a>
+            <a href="https://orm4n5.github.io/privacy_screen.html" class="btn-privacy">プライバシーポリシー</a>
+        </div>
+    </div>
+
 </div>
 
 <footer>
+    <p>各アプリへのお問い合わせはストアの開発者ページから受け付けております。</p>
     <p>&copy; 2026 orm4n5. All rights reserved.</p>
 </footer>
 
