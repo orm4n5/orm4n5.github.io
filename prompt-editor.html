@@ -116,6 +116,16 @@
                     if(!appData.categories) appData.categories = ["未分類"];
                     if(!appData.prompts) appData.prompts = [];
                     if(!appData.custom_variables) appData.custom_variables = [];
+                    
+                    // 「未分類」が必ず1つ目に来るように調整（既存データの保護）
+                    if (appData.categories[0] !== "未分類") {
+                        const unclassifiedIdx = appData.categories.indexOf("未分類");
+                        if (unclassifiedIdx > -1) {
+                            appData.categories.splice(unclassifiedIdx, 1);
+                        }
+                        appData.categories.unshift("未分類");
+                    }
+                    
                     initEditor();
                 } catch (err) {
                     alert('JSONファイルの読み込みに失敗しました。');
@@ -152,16 +162,30 @@
             catContainer.innerHTML = '';
             appData.categories.forEach((cat, index) => {
                 const div = document.createElement('div');
-                div.className = "flex items-center bg-gray-100 rounded px-2 py-1 border border-gray-200";
-                div.innerHTML = `
-                    <input type="text" value="${cat}" class="bg-transparent outline-none text-sm w-32" onchange="updateCategory(${index}, this.value)">
-                    <button onclick="removeCategory(${index})" class="ml-2 text-red-400 hover:text-red-600 font-bold">×</button>
-                `;
+                
+                if (index === 0) {
+                    // 1つ目（未分類）は編集不可・削除不可
+                    div.className = "flex items-center bg-gray-200 rounded px-2 py-1 border border-gray-300";
+                    div.innerHTML = `
+                        <input type="text" value="未分類（変更不可）" disabled class="bg-transparent outline-none text-sm w-36 text-gray-500 cursor-not-allowed">
+                    `;
+                } else {
+                    // 「新規カテゴリ」の場合は背景を薄い赤に
+                    const bgClass = cat === "新規カテゴリ" ? "bg-red-100" : "bg-transparent";
+                    
+                    div.className = "flex items-center bg-gray-100 rounded px-2 py-1 border border-gray-200";
+                    div.innerHTML = `
+                        <input type="text" value="${cat}" class="${bgClass} outline-none text-sm w-32 px-1 rounded transition-colors focus:bg-white" onchange="updateCategory(${index}, this.value)">
+                        <button onclick="removeCategory(${index})" class="ml-2 text-red-400 hover:text-red-600 font-bold">×</button>
+                    `;
+                }
+                
                 catContainer.appendChild(div);
             });
         }
         window.updateCategory = (idx, val) => {
             appData.categories[idx] = val;
+            renderCategories(); // 名前変更で赤背景を消すために再描画
             renderPrompts(); 
         };
         window.removeCategory = (idx) => {
@@ -191,7 +215,7 @@
                         <input type="text" value="${v.name}" class="w-full border rounded px-2 py-1 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'name', this.value)">
                     </div>
                     <div class="flex-1">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase">オプション</label>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">選択肢（複数登録時はカンマ「,」で区切ってください。）</label>
                         <input type="text" value="${v.options}" class="w-full border rounded px-2 py-1 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'options', this.value)">
                     </div>
                     <div class="pt-4">
@@ -292,7 +316,7 @@
             const defaultCat = appData.categories.length > 0 ? appData.categories[0] : "未分類";
             appData.prompts.unshift({
                 id: newId, 
-                title: "新規プロンプト", 
+                title: "ここにプロンプト名を入力...", 
                 category: defaultCat, 
                 tags: "", 
                 content: "", 
