@@ -8,6 +8,8 @@
     <style>
         body { background-color: #f3f4f6; }
         .hide { display: none !important; }
+        /* アニメーション用の微調整 */
+        .prompt-details { transition: all 0.2s ease-in-out; }
     </style>
 </head>
 <body class="text-gray-800 p-6 max-w-5xl mx-auto font-sans">
@@ -17,21 +19,29 @@
         <p class="text-gray-600">
             本ページではandroid端末向けアプリ「Prompt Storage」用にインポートするプロンプトデータ（JSON）を作成・編集することができます。
         </p>
+        <p class="text-red-600 font-bold text-sm mt-2">
+            データのインポートおよびエクスポートはプレミアムプランのみ利用できます。
+        </p>
+        <div class="mt-4">
+            <a href="https://play.google.com/store/apps/details?id=com.orishin.prompt_storage&pcampaignid=web_share" target="_blank" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full text-sm shadow-sm transition-colors">
+                <span class="mr-2">📲</span> アプリのインストールはこちら
+            </a>
+        </div>
     </header>
 
-    <div class="bg-white p-6 rounded-lg shadow-md mb-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8 flex flex-col sm:flex-row gap-4 items-center justify-between border-t-4 border-blue-500">
         <div class="flex gap-4 items-center w-full sm:w-auto">
-            <button id="btn-new" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <button id="btn-new" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
                 📄 新規作成
             </button>
             <span class="text-gray-400">または</span>
-            <label class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded cursor-pointer">
+            <label class="bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2 px-4 rounded cursor-pointer transition-colors">
                 📁 JSONを読み込む
                 <input type="file" id="file-input" accept=".json" class="hidden">
             </label>
         </div>
         <div>
-            <button id="btn-export" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded hide">
+            <button id="btn-export" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded hide transition-all">
                 💾 保存（ダウンロード）
             </button>
         </div>
@@ -40,14 +50,18 @@
     <div id="editor-section" class="hide space-y-8">
         
         <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-bold mb-4 border-b pb-2">1. カテゴリ設定</h2>
+            <h2 class="text-xl font-bold mb-4 border-b pb-2 flex items-center">
+                <span class="mr-2 text-blue-500">📁</span> 1. カテゴリ設定
+            </h2>
             <div id="categories-container" class="flex flex-wrap gap-2 mb-4"></div>
-            <button id="btn-add-category" class="text-sm bg-gray-200 hover:bg-gray-300 py-1 px-3 rounded">+ カテゴリ追加</button>
+            <button id="btn-add-category" class="text-sm bg-gray-100 hover:bg-gray-200 py-1 px-3 rounded">+ カテゴリ追加</button>
         </section>
 
         <section class="bg-white p-6 rounded-lg shadow-md">
             <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h2 class="text-xl font-bold">2. カスタム変数設定</h2>
+                <h2 class="text-xl font-bold flex items-center">
+                    <span class="mr-2 text-blue-500">⚙️</span> 2. カスタム変数設定
+                </h2>
                 <button id="btn-add-var" class="text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 py-1 px-3 rounded">+ 変数追加</button>
             </div>
             <div id="variables-container" class="space-y-3"></div>
@@ -55,10 +69,12 @@
 
         <section class="bg-white p-6 rounded-lg shadow-md">
             <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h2 class="text-xl font-bold">3. プロンプト一覧</h2>
-                <button id="btn-add-prompt" class="text-sm bg-blue-500 text-white hover:bg-blue-600 py-1 px-3 rounded">+ プロンプト追加</button>
+                <h2 class="text-xl font-bold flex items-center">
+                    <span class="mr-2 text-blue-500">📝</span> 3. プロンプト一覧
+                </h2>
+                <button id="btn-add-prompt" class="text-sm bg-blue-500 text-white hover:bg-blue-600 py-1 px-3 rounded shadow-sm">+ プロンプト追加</button>
             </div>
-            <div id="prompts-container" class="space-y-6"></div>
+            <div id="prompts-container" class="space-y-4"></div>
         </section>
 
     </div>
@@ -73,9 +89,8 @@
             custom_variables: []
         };
 
-        let appData = null; // 現在編集中のデータ
+        let appData = null; 
 
-        // --- DOM要素の取得 ---
         const btnNew = document.getElementById('btn-new');
         const fileInput = document.getElementById('file-input');
         const btnExport = document.getElementById('btn-export');
@@ -85,9 +100,9 @@
         const varContainer = document.getElementById('variables-container');
         const promptsContainer = document.getElementById('prompts-container');
 
-        // --- イベントリスナー（ファイル操作） ---
+        // --- イベントリスナー ---
         btnNew.addEventListener('click', () => {
-            appData = JSON.parse(JSON.stringify(emptyData)); // ディープコピー
+            appData = JSON.parse(JSON.stringify(emptyData));
             initEditor();
         });
 
@@ -98,28 +113,23 @@
             reader.onload = (event) => {
                 try {
                     appData = JSON.parse(event.target.result);
-                    // 必須フィールドの補完（古いバージョン対策など）
                     if(!appData.categories) appData.categories = ["未分類"];
                     if(!appData.prompts) appData.prompts = [];
                     if(!appData.custom_variables) appData.custom_variables = [];
                     initEditor();
                 } catch (err) {
-                    alert('JSONファイルの読み込みに失敗しました。形式が正しいか確認してください。');
+                    alert('JSONファイルの読み込みに失敗しました。');
                 }
             };
             reader.readAsText(file);
-            e.target.value = ""; // 同じファイルを再度選べるようにリセット
+            e.target.value = "";
         });
 
         btnExport.addEventListener('click', () => {
             if (!appData) return;
-            
-            // エクスポート日時を更新
             const now = new Date();
-            // JSTに合わせたISOライクなフォーマットにする場合
             appData.exported_at = now.toISOString().replace('Z', '');
-
-            const jsonStr = JSON.stringify(appData, null, 2); // 見やすくフォーマット
+            const jsonStr = JSON.stringify(appData, null, 2);
             const blob = new Blob([jsonStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -129,7 +139,6 @@
             URL.revokeObjectURL(url);
         });
 
-        // --- エディタ初期化処理 ---
         function initEditor() {
             editorSection.classList.remove('hide');
             btnExport.classList.remove('hide');
@@ -138,12 +147,12 @@
             renderPrompts();
         }
 
-        // --- カテゴリのレンダリング ---
+        // --- 各セクションの描画ロジック ---
         function renderCategories() {
             catContainer.innerHTML = '';
             appData.categories.forEach((cat, index) => {
                 const div = document.createElement('div');
-                div.className = "flex items-center bg-gray-100 rounded px-2 py-1";
+                div.className = "flex items-center bg-gray-100 rounded px-2 py-1 border border-gray-200";
                 div.innerHTML = `
                     <input type="text" value="${cat}" class="bg-transparent outline-none text-sm w-32" onchange="updateCategory(${index}, this.value)">
                     <button onclick="removeCategory(${index})" class="ml-2 text-red-400 hover:text-red-600 font-bold">×</button>
@@ -153,11 +162,11 @@
         }
         window.updateCategory = (idx, val) => {
             appData.categories[idx] = val;
-            renderPrompts(); // プロンプト内のセレクトボックスも更新するため
+            renderPrompts(); 
         };
         window.removeCategory = (idx) => {
             appData.categories.splice(idx, 1);
-            if(appData.categories.length === 0) appData.categories.push("未分類"); // 最低1つは残す
+            if(appData.categories.length === 0) appData.categories.push("未分類");
             renderCategories();
             renderPrompts();
         };
@@ -167,27 +176,26 @@
             renderPrompts();
         });
 
-        // --- カスタム変数のレンダリング ---
         function renderVariables() {
             varContainer.innerHTML = '';
             if (appData.custom_variables.length === 0) {
-                varContainer.innerHTML = '<p class="text-sm text-gray-500">変数は登録されていません。</p>';
+                varContainer.innerHTML = '<p class="text-sm text-gray-400 italic">変数は登録されていません。</p>';
                 return;
             }
             appData.custom_variables.forEach((v, index) => {
                 const div = document.createElement('div');
-                div.className = "flex items-center gap-2 bg-gray-50 p-2 rounded border";
+                div.className = "flex items-center gap-2 bg-gray-50 p-3 rounded border border-gray-200 shadow-sm";
                 div.innerHTML = `
                     <div class="flex-1">
-                        <label class="text-xs text-gray-500">変数名</label>
-                        <input type="text" value="${v.name}" class="w-full border rounded px-2 py-1 text-sm" onchange="updateVar(${index}, 'name', this.value)">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">変数名</label>
+                        <input type="text" value="${v.name}" class="w-full border rounded px-2 py-1 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'name', this.value)">
                     </div>
                     <div class="flex-1">
-                        <label class="text-xs text-gray-500">オプション (カンマ区切り等)</label>
-                        <input type="text" value="${v.options}" class="w-full border rounded px-2 py-1 text-sm" onchange="updateVar(${index}, 'options', this.value)">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">オプション</label>
+                        <input type="text" value="${v.options}" class="w-full border rounded px-2 py-1 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'options', this.value)">
                     </div>
                     <div class="pt-4">
-                        <button onclick="removeVar(${index})" class="bg-red-100 text-red-600 hover:bg-red-200 px-3 py-1 rounded text-sm">削除</button>
+                        <button onclick="removeVar(${index})" class="text-red-500 hover:bg-red-50 px-2 py-1 rounded text-sm transition-colors">削除</button>
                     </div>
                 `;
                 varContainer.appendChild(div);
@@ -201,60 +209,76 @@
             renderVariables();
         });
 
-        // --- プロンプトのレンダリング ---
+        // --- プロンプト一覧（折りたたみ機能付き） ---
         function renderPrompts() {
             promptsContainer.innerHTML = '';
             if (appData.prompts.length === 0) {
-                promptsContainer.innerHTML = '<p class="text-sm text-gray-500">プロンプトは登録されていません。</p>';
+                promptsContainer.innerHTML = '<p class="text-sm text-gray-400 italic">プロンプトは登録されていません。</p>';
                 return;
             }
             
-            // カテゴリのオプション用HTMLを生成
-            const catOptionsHTML = appData.categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
-
             appData.prompts.forEach((prompt, index) => {
                 const div = document.createElement('div');
-                div.className = "bg-gray-50 p-4 rounded-lg border border-gray-200 relative";
+                div.className = "bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden";
                 
-                // お気に入りチェックボックス
                 const favChecked = prompt.isFavorite === 1 ? 'checked' : '';
 
                 div.innerHTML = `
-                    <div class="absolute top-4 right-4">
-                        <button onclick="removePrompt(${index})" class="text-red-500 hover:text-red-700 font-bold text-sm bg-red-50 px-2 py-1 rounded">削除</button>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 pr-16">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600 mb-1">タイトル</label>
-                            <input type="text" value="${prompt.title}" class="w-full border rounded px-2 py-1" onchange="updatePrompt(${index}, 'title', this.value)">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 border-b border-gray-100">
+                        <div class="flex flex-1 gap-3 items-center">
+                            <div class="flex-1">
+                                <input type="text" value="${prompt.title}" placeholder="タイトル" class="w-full bg-transparent font-bold text-blue-800 outline-none focus:bg-white px-1 border-b border-transparent focus:border-blue-300" onchange="updatePrompt(${index}, 'title', this.value)">
+                            </div>
+                            <div class="w-32">
+                                <select class="w-full bg-transparent text-xs text-gray-600 outline-none cursor-pointer" onchange="updatePrompt(${index}, 'category', this.value)">
+                                    ${appData.categories.map(c => `<option value="${c}" ${c === prompt.category ? 'selected' : ''}>${c}</option>`).join('')}
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600 mb-1">カテゴリ</label>
-                            <select class="w-full border rounded px-2 py-1" onchange="updatePrompt(${index}, 'category', this.value)">
-                                ${appData.categories.map(c => `<option value="${c}" ${c === prompt.category ? 'selected' : ''}>${c}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600 mb-1">タグ (スペース区切り)</label>
-                            <input type="text" value="${prompt.tags}" class="w-full border rounded px-2 py-1" onchange="updatePrompt(${index}, 'tags', this.value)">
-                        </div>
-                        <div class="flex items-center pt-5">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="checkbox" class="w-4 h-4 text-blue-600" ${favChecked} onchange="updatePromptFav(${index}, this.checked)">
-                                <span class="ml-2 text-sm text-gray-700">お気に入り (★)</span>
-                            </label>
+                        <div class="flex items-center gap-2 ml-4">
+                            <button onclick="toggleDetails(${index})" id="toggle-btn-${index}" class="text-xs bg-white border border-gray-300 px-3 py-1 rounded hover:bg-gray-100 transition-colors">詳細・編集 ▽</button>
+                            <button onclick="removePrompt(${index})" class="text-xs text-red-400 hover:text-red-600 px-1">削除</button>
                         </div>
                     </div>
                     
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-1">プロンプト内容</label>
-                        <textarea class="w-full border rounded px-2 py-2 h-32 font-mono text-sm" onchange="updatePrompt(${index}, 'content', this.value)">${prompt.content}</textarea>
+                    <div id="details-${index}" class="hide p-4 bg-white space-y-4 border-t border-gray-100 prompt-details">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">タグ (スペース区切り)</label>
+                                <input type="text" value="${prompt.tags}" class="w-full border rounded px-2 py-1 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updatePrompt(${index}, 'tags', this.value)">
+                            </div>
+                            <div class="flex items-center pt-5">
+                                <label class="flex items-center cursor-pointer group">
+                                    <input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500" ${favChecked} onchange="updatePromptFav(${index}, this.checked)">
+                                    <span class="ml-2 text-sm text-gray-600 group-hover:text-blue-600">お気に入り (★)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">プロンプト内容</label>
+                            <textarea class="w-full border rounded px-2 py-2 h-48 font-mono text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updatePrompt(${index}, 'content', this.value)">${prompt.content}</textarea>
+                        </div>
                     </div>
                 `;
                 promptsContainer.appendChild(div);
             });
         }
+
+        // 折りたたみ切り替え
+        window.toggleDetails = (idx) => {
+            const detailEl = document.getElementById(`details-${idx}`);
+            const btnEl = document.getElementById(`toggle-btn-${idx}`);
+            if (detailEl.classList.contains('hide')) {
+                detailEl.classList.remove('hide');
+                btnEl.innerText = "閉じる △";
+                btnEl.classList.add('bg-blue-50', 'text-blue-600', 'border-blue-200');
+            } else {
+                detailEl.classList.add('hide');
+                btnEl.innerText = "詳細・編集 ▽";
+                btnEl.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-200');
+            }
+        };
+
         window.updatePrompt = (idx, field, val) => { appData.prompts[idx][field] = val; };
         window.updatePromptFav = (idx, isChecked) => { appData.prompts[idx].isFavorite = isChecked ? 1 : 0; };
         window.removePrompt = (idx) => { 
@@ -266,7 +290,7 @@
         document.getElementById('btn-add-prompt').addEventListener('click', () => {
             const newId = appData.prompts.length > 0 ? Math.max(...appData.prompts.map(p => p.id)) + 1 : 1;
             const defaultCat = appData.categories.length > 0 ? appData.categories[0] : "未分類";
-            appData.prompts.unshift({ // 新しいものは一番上に追加
+            appData.prompts.unshift({
                 id: newId, 
                 title: "新規プロンプト", 
                 category: defaultCat, 
@@ -276,6 +300,8 @@
                 usage_count: 0 
             });
             renderPrompts();
+            // 新しく追加したものを最初から展開する
+            toggleDetails(0);
         });
 
     </script>
