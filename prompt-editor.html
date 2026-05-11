@@ -9,7 +9,7 @@
         body { background-color: #f3f4f6; }
         .hide { display: none !important; }
         /* アニメーション用の微調整 */
-        .prompt-details { transition: all 0.2s ease-in-out; }
+        .prompt-details, .var-details { transition: all 0.2s ease-in-out; }
     </style>
 </head>
 <body class="text-gray-800 p-3 md:p-6 max-w-5xl mx-auto font-sans">
@@ -117,11 +117,10 @@
                     if(!appData.prompts) appData.prompts = [];
                     if(!appData.custom_variables) appData.custom_variables = [];
                     
+                    // 「未分類」の保護
                     if (appData.categories[0] !== "未分類") {
                         const unclassifiedIdx = appData.categories.indexOf("未分類");
-                        if (unclassifiedIdx > -1) {
-                            appData.categories.splice(unclassifiedIdx, 1);
-                        }
+                        if (unclassifiedIdx > -1) appData.categories.splice(unclassifiedIdx, 1);
                         appData.categories.unshift("未分類");
                     }
                     
@@ -156,27 +155,24 @@
             renderPrompts();
         }
 
-        // --- 各セクションの描画ロジック ---
+        // --- 1. カテゴリ設定 ---
         function renderCategories() {
             catContainer.innerHTML = '';
             appData.categories.forEach((cat, index) => {
                 const div = document.createElement('div');
-                
                 if (index === 0) {
                     div.className = "flex items-center bg-gray-200 rounded px-2 py-1 border border-gray-300 w-full sm:w-auto";
                     div.innerHTML = `
-                        <input type="text" value="未分類（変更不可）" disabled class="bg-transparent outline-none text-xs md:text-sm w-full sm:w-36 text-gray-500 cursor-not-allowed">
+                        <input type="text" value="未分類（変更不可）" disabled class="bg-transparent outline-none text-xs md:text-sm w-full sm:w-40 text-gray-500 cursor-not-allowed font-medium">
                     `;
                 } else {
                     const bgClass = cat === "新規カテゴリ" ? "bg-red-100" : "bg-transparent";
-                    
                     div.className = "flex items-center bg-gray-100 rounded px-2 py-1 border border-gray-200 w-full sm:w-auto";
                     div.innerHTML = `
                         <input type="text" value="${cat}" class="${bgClass} outline-none text-xs md:text-sm w-full sm:w-32 px-1 rounded transition-colors focus:bg-white flex-1" onchange="updateCategory(${index}, this.value)">
                         <button onclick="removeCategory(${index})" class="ml-2 p-1 text-red-400 hover:text-red-600 font-bold text-lg">×</button>
                     `;
                 }
-                
                 catContainer.appendChild(div);
             });
         }
@@ -197,6 +193,7 @@
             renderPrompts();
         });
 
+        // --- 2. カスタム変数設定（スマホのみ折りたたみ対応） ---
         function renderVariables() {
             varContainer.innerHTML = '';
             if (appData.custom_variables.length === 0) {
@@ -205,50 +202,62 @@
             }
             appData.custom_variables.forEach((v, index) => {
                 const div = document.createElement('div');
-                div.className = "flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-gray-50 p-3 rounded border border-gray-200 shadow-sm";
+                div.className = "bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden";
                 div.innerHTML = `
-                    <div class="w-full sm:flex-1">
-                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">変数名</label>
-                        <input type="text" value="${v.name}" class="w-full border rounded px-2 py-2 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'name', this.value)">
+                    <div class="flex items-center justify-between p-3 bg-gray-50">
+                        <div class="flex-1">
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase">変数名</label>
+                            <input type="text" value="${v.name}" class="w-full bg-transparent border-b border-transparent focus:border-blue-300 focus:bg-white px-1 py-1 text-sm md:text-base outline-none font-bold text-blue-700" onchange="updateVar(${index}, 'name', this.value)">
+                        </div>
+                        <div class="flex items-center gap-2 ml-4">
+                            <button onclick="toggleVarDetails(${index})" id="var-toggle-btn-${index}" class="md:hidden text-xs bg-white border border-gray-300 px-3 py-1 rounded">編集 ▽</button>
+                            <button onclick="removeVar(${index})" class="text-xs text-red-500 hover:bg-red-50 px-2 py-1 rounded">削除</button>
+                        </div>
                     </div>
-                    <div class="w-full sm:flex-1">
+                    <div id="var-details-${index}" class="hide md:block p-3 bg-white border-t border-gray-100 var-details">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">選択肢（複数登録時はカンマ「,」で区切ってください。）</label>
                         <input type="text" value="${v.options}" class="w-full border rounded px-2 py-2 text-sm focus:ring-1 focus:ring-blue-300 outline-none" onchange="updateVar(${index}, 'options', this.value)">
-                    </div>
-                    <div class="w-full sm:w-auto pt-2 sm:pt-5 text-right">
-                        <button onclick="removeVar(${index})" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded text-sm transition-colors border border-red-200 sm:border-none w-full sm:w-auto">削除</button>
                     </div>
                 `;
                 varContainer.appendChild(div);
             });
         }
+        window.toggleVarDetails = (idx) => {
+            const detailEl = document.getElementById(`var-details-${idx}`);
+            const btnEl = document.getElementById(`var-toggle-btn-${idx}`);
+            if (detailEl.classList.contains('hide')) {
+                detailEl.classList.remove('hide');
+                btnEl.innerText = "閉じる △";
+            } else {
+                detailEl.classList.add('hide');
+                btnEl.innerText = "編集 ▽";
+            }
+        };
         window.updateVar = (idx, field, val) => { appData.custom_variables[idx][field] = val; };
         window.removeVar = (idx) => { appData.custom_variables.splice(idx, 1); renderVariables(); };
         document.getElementById('btn-add-var').addEventListener('click', () => {
             const newId = appData.custom_variables.length > 0 ? Math.max(...appData.custom_variables.map(v => v.id)) + 1 : 1;
             appData.custom_variables.push({ id: newId, name: "新規変数", options: "" });
             renderVariables();
+            if(window.innerWidth < 768) toggleVarDetails(appData.custom_variables.length - 1);
         });
 
-        // --- プロンプト一覧 ---
+        // --- 3. プロンプト一覧 ---
         function renderPrompts() {
             promptsContainer.innerHTML = '';
             if (appData.prompts.length === 0) {
                 promptsContainer.innerHTML = '<p class="text-xs md:text-sm text-gray-400 italic">プロンプトは登録されていません。</p>';
                 return;
             }
-            
             appData.prompts.forEach((prompt, index) => {
                 const div = document.createElement('div');
                 div.className = "bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden";
-                
                 const favChecked = prompt.isFavorite === 1 ? 'checked' : '';
-
                 div.innerHTML = `
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 bg-gray-50 border-b border-gray-100 gap-3">
                         <div class="flex flex-col sm:flex-row w-full sm:flex-1 gap-2 sm:gap-3 items-start sm:items-center">
                             <div class="w-full sm:flex-1">
-                                <input type="text" value="${prompt.title}" placeholder="タイトル" class="w-full bg-transparent font-bold text-blue-800 outline-none focus:bg-white px-1 py-1 border-b border-transparent focus:border-blue-300 text-sm md:text-base" onchange="updatePrompt(${index}, 'title', this.value)">
+                                <input type="text" value="${prompt.title}" placeholder="ここにプロンプト名を入力..." class="w-full bg-transparent font-bold text-blue-800 outline-none focus:bg-white px-1 py-1 border-b border-transparent focus:border-blue-300 text-sm md:text-base" onchange="updatePrompt(${index}, 'title', this.value)">
                             </div>
                             <div class="w-full sm:w-32">
                                 <select class="w-full bg-transparent text-xs md:text-sm text-gray-600 outline-none cursor-pointer border rounded sm:border-none p-1 sm:p-0" onchange="updatePrompt(${index}, 'category', this.value)">
@@ -261,7 +270,6 @@
                             <button onclick="removePrompt(${index})" class="text-xs md:text-sm text-red-500 hover:text-red-700 px-3 py-2 sm:py-1 rounded border border-red-200 sm:border-transparent">削除</button>
                         </div>
                     </div>
-                    
                     <div id="details-${index}" class="hide p-3 md:p-4 bg-white space-y-4 border-t border-gray-100 prompt-details">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
