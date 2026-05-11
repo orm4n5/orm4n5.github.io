@@ -15,6 +15,11 @@
             --disabled-color: #dadce0;
         }
 
+        /* 要素の幅計算を直感的にするためのリセット */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -27,7 +32,7 @@
         header {
             background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
             color: white;
-            padding: 4rem 1rem;
+            padding: 4rem 1rem 5rem; /* 下部の余白を少し増やしてカードの重なりを綺麗に */
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
@@ -46,7 +51,7 @@
 
         .container {
             max-width: 900px;
-            margin: -2rem auto 3rem;
+            margin: -3rem auto 3rem; /* ヘッダーへの食い込みを調整 */
             padding: 0 1.5rem;
         }
 
@@ -86,6 +91,7 @@
             gap: 1rem;
             flex-wrap: wrap;
             margin-top: auto;
+            align-items: center;
         }
 
         .btn-play {
@@ -129,6 +135,21 @@
             color: var(--text-main);
         }
 
+        /* プロンプト編集ページへのリンク用クラス */
+        .prompt-edit-link {
+            width: 100%;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            display: block;
+        }
+
+        .prompt-edit-link:hover {
+            text-decoration: underline;
+        }
+
         footer {
             text-align: center;
             padding: 4rem 1rem;
@@ -136,12 +157,49 @@
             font-size: 0.9rem;
         }
 
+        /* ----- スマホ向け最適化 (レスポンシブ) ----- */
         @media (max-width: 600px) {
-            header { padding: 3rem 1rem; }
+            header { padding: 3rem 1rem 4rem; }
             header h1 { font-size: 1.8rem; }
-            .app-card { padding: 1.5rem; }
-            .links { flex-direction: column; }
-            .btn-play, .btn-privacy { text-align: center; justify-content: center; }
+            
+            .container { 
+                padding: 0 1rem; 
+                margin-top: -2.5rem;
+            }
+            
+            .app-card { 
+                padding: 1.5rem; 
+                margin-bottom: 1.5rem;
+            }
+            
+            .app-name { 
+                font-size: 1.3rem; 
+            }
+            
+            .app-desc { 
+                font-size: 0.95rem; 
+                margin-bottom: 1.2rem;
+            }
+            
+            .links { 
+                flex-direction: column; 
+                gap: 0.8rem; 
+                align-items: stretch; /* ボタンを横幅いっぱいに広げる */
+            }
+            
+            .btn-play, .btn-privacy { 
+                width: 100%; 
+                text-align: center; 
+                justify-content: center; 
+                padding: 0.8rem 1rem; /* タップしやすいように高さを確保 */
+                font-size: 0.95rem;
+            }
+
+            .prompt-edit-link {
+                text-align: center; /* スマホでは中央揃えにして見栄えを良くする */
+                margin-top: 0.8rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -149,7 +207,7 @@
 
 <header>
     <h1>Studio Orishin</h1>
-    <p>Androidアプリの紹介とサポート</p>
+    <p>Androidアプリのリリース作品紹介</p>
 </header>
 
 <div class="container">
@@ -168,12 +226,12 @@
     <div class="app-card">
         <h2 class="app-name">PROMPT STORAGE</h2>
         <p class="app-desc">
-            AIプロンプトをスマートに管理。スマホでの運用に特化し、一瞬でコピー＆ペーストが可能なプロンプト保管庫です。
+            AIプロンプトをスマートに管理。<br>スマホでの運用に特化し、一瞬でコピー＆ペーストが可能なプロンプト保管庫です。
         </p>
         <div class="links">
             <a href="https://play.google.com/store/apps/details?id=com.orishin.prompt_storage&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
             <a href="privacy_promptstorage.html" class="btn-privacy">プライバシーポリシー</a>
-            <a href="prompt-editor.html" style="width: 100%; margin-top: 0.5rem; text-decoration: none; font-size: 0.85rem; color: var(--primary-color); font-weight: bold; display: block;">【プロンプト作成・編集ページはこちら（プレミアム版のみ利用可能）】</a>
+            <a href="prompt-editor.html" class="prompt-edit-link">【プロンプト作成・編集ページはこちら（プレミアム版のみ利用可能）】</a>
         </div>
     </div>
 
@@ -202,7 +260,7 @@
     <div class="app-card">
         <h2 class="app-name">JSONビューア＆エディター</h2>
         <p class="app-desc">
-            複雑なJSONファイルを、スマホで「読みやすく」「書き換えやすく」。デバッグから設定ファイルの変更まで、PCがない環境で活躍するツールです。
+            複雑なJSONファイルを、スマホで「読みやすく」「書き換えやすく」。<br>デバッグから設定ファイルの変更まで、PCがない環境で活躍するツールです。
         </p>
         <div class="links">
             <a href="https://play.google.com/store/apps/details?id=com.orishin.jsonviewer&pcampaignid=web_share" class="btn-play" target="_blank">Google Play で手に入れる</a>
@@ -213,7 +271,7 @@
     <div class="app-card">
         <h2 class="app-name">サブスク管理マネージャー</h2>
         <p class="app-desc">
-            サブスクリプションを賢く一覧管理。解約シミュレーションで見直し・節約もできる、サブスク料金を「見える化」するアプリです。
+            サブスクリプションを賢く一覧管理。<br>解約シミュレーションで見直し・節約もできる、サブスク料金を「見える化」するアプリです。
         </p>
         <div class="links">
             <a href="#" class="btn-play btn-soon">Google Play 公開準備中</a>
@@ -224,7 +282,7 @@
     <div class="app-card">
         <h2 class="app-name">Screen-Filter</h2>
         <p class="app-desc">
-            スマホの「見られたくない」を解決。通知パネルから即起動し、外出先でのプライバシーを守る覗き見防止フィルターアプリです。
+            スマホの「見られたくない」を解決。<br>通知パネルから即起動し、外出先でのプライバシーを守る覗き見防止フィルターアプリです。
         </p>
         <div class="links">
             <a href="#" class="btn-play btn-soon">Google Play 公開準備中</a>
