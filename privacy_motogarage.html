@@ -3,60 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Double Timer</title>
+
+    <title>プライバシーポリシー | Privacy Policy - モトガレージ</title>
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h1 { color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 10px; font-size: 1.8rem; }
-        h2 { color: #202124; font-size: 1.2rem; margin-top: 25px; background: #f1f3f4; padding: 8px 12px; border-left: 4px solid #1a73e8; }
-        .en-text { color: #5f6368; font-size: 0.9rem; font-style: italic; margin-top: 4px; display: block; }
-        p { margin: 10px 0; }
-        .contact-box { background: #e8f0fe; padding: 15px; border-radius: 8px; margin-top: 20px; }
-        footer { text-align: center; margin-top: 30px; font-size: 0.8rem; color: #70757a; }
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --accent-color: #1a73e8;
+            --heading-color: #202124;
+            --sub-text-color: #5f6368;
+            --border-color: #e8eaed;
+            --contact-bg: #e8f0fe;
+            --contact-border: #c2e0ff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --card-bg: #1e1e1e;
+                --accent-color: #5b9cf6;
+                --heading-color: #ffffff;
+                --sub-text-color: #b0b0b0;
+                --border-color: #333333;
+                --contact-bg: #1d2b3d;
+                --contact-border: #35506e;
+            }
+        }
+
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                "Helvetica Neue",
+                Arial,
+                "Noto Sans JP",
+                "Noto Sans",
+                sans-serif;
+
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .title-en {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--sub-text-color);
+            margin-top: 4px;
+        }
+
+        h2 {
+            color: var(--heading-color);
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            background: rgba(26, 115, 232, 0.08);
+            padding: 9px 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        .en-text {
+            display: block;
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .contact-box {
+            background-color: var(--contact-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .contact-box hr {
+            border: 0;
+            border-top: 1px solid var(--contact-border);
+            margin: 15px 0;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .date-box {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: right;
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--sub-text-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            .en-text {
+                font-size: 0.88rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="card">
-    <h1>プライバシーポリシー<br><span style="font-size: 1.2rem; color: #70757a;">Privacy Policy</span></h1>
+<div class="container">
 
-    <p>「モトガレージ」（以下、「本アプリ」）における利用者の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
-    <p class="en-text">orishin (hereinafter referred to as "the Developer") hereby establishes the following privacy policy regarding the handling of user information in this application.</p>
+    <div class="card">
 
-    <h2>1. 広告の表示について</h2>
-    <span class="en-text">1. About Advertisement Distribution</span>
-    <p>本アプリでは、第三者配信による広告サービス「Google AdMob」を利用して広告を表示しています。広告配信事業者は、ユーザーの興味に応じた広告を表示するため、デバイスの識別子やクッキー（Cookie）等の情報を取得・利用することがあります。これらの情報は個人を特定するものではありません。詳細については、Googleのプライバシーポリシーをご確認ください。</p>
-    <p class="en-text">The App uses "Google AdMob," a third-party advertising service. Ad distributors may collect and use information such as device identifiers and cookies to show ads based on your interests. This information is anonymous and does not identify any individual. For more details, please refer to Google's Privacy Policy.</p>
+        <h1>
+            プライバシーポリシー
+            <span class="title-en">Privacy Policy</span>
+        </h1>
 
-    <h2>2. データの収集と保存</h2>
-    <span class="en-text">2. Data Collection and Storage</span>
-    <p>本アプリに入力された車両情報、メンテナンス記録、写真、メモ等のデータは、原則としてユーザーの端末内（ローカルストレージ）にのみ保存されます。開発者がこれらのデータをサーバーに収集・閲覧することはありません。</p>
-    <p class="en-text">Data entered into the App, such as vehicle information, maintenance records, photos, and memos, is in principle stored only within the user's device (local storage). The Developer does not collect or view this data on any server.</p>
+        <!-- Introduction -->
 
-    <h2>3. プレミアム機能の購入に関する情報</h2>
-    <span class="en-text">3. Information Regarding Premium Feature Purchases</span>
-    <p>課金決済はGoogle Playのシステムを通じて行われます。開発者がユーザーのクレジットカード情報や決済詳細を直接取得・保持することはありません。</p>
-    <p class="en-text">Billing transactions are processed through the Google Play system. The Developer does not directly acquire or retain your credit card information or payment details.</p>
+        <p>
+            個人開発者orishin（以下「開発者」といいます）が提供するアプリケーション「モトガレージ」（以下「本アプリ」といいます）における、ユーザーの情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。
+        </p>
 
-    <h2>4. ポリシーの変更</h2>
-    <span class="en-text">4. Changes to the Policy</span>
-    <p>開発者は、法令の変更やサービス内容の更新に伴い、本ポリシーを変更することがあります。</p>
-    <p class="en-text">The Developer may change this policy from time to time in accordance with changes in laws or updates to service contents.</p>
+        <p class="en-text">
+            orishin (hereinafter referred to as the "Developer") establishes the following Privacy Policy regarding the handling of user information in the application "Moto Garage" (hereinafter referred to as the "App").
+        </p>
 
-    <h2>5. お問い合わせについて</h2>
-    <span class="en-text">5. Contact Us</span>
-    <div class="contact-box">
-        <p>不具合報告やお問い合わせにつきましては、Google Playストアのレビュー欄、またはストアの該当アプリページよりお願いいたします。</p>
-        <p class="en-text">For bug reports and inquiries, please use the review section of the Google Play Store or the corresponding app page in the store.</p>
-        <hr style="border: 0; border-top: 1px solid #c2e0ff; margin: 15px 0;">
-        <p><strong>開発者名 (Developer Name)：</strong> orishin</p>
-        <p><strong>連絡先 (Contact)：</strong> orm4n5@gmail.com</p>
+
+        <!-- 1 -->
+
+        <h2>
+            1. 広告の表示について
+            <span class="en-text">1. Advertising</span>
+        </h2>
+
+        <p>
+            本アプリでは、第三者配信による広告サービス「Google AdMob」を利用して広告を表示しています。
+        </p>
+
+        <p class="en-text">
+            The App uses "Google AdMob," a third-party advertising service, to display advertisements.
+        </p>
+
+        <p>
+            Google AdMobでは、広告の配信、広告のパフォーマンスの測定、広告の不正利用の防止、およびユーザーに表示する広告の選択等のために、デバイスに関連する情報や広告識別子、IPアドレス、アプリの利用状況等の情報が収集・利用される場合があります。収集・利用される情報やその目的は、Googleのサービスおよび設定によって異なる場合があります。
+        </p>
+
+        <p class="en-text">
+            Google AdMob may collect and use information such as device-related information, advertising identifiers, IP addresses, and app usage information for purposes including delivering advertisements, measuring advertising performance, preventing fraudulent activity, and selecting advertisements to display to users. The types of information collected and the purposes of use may vary depending on Google's services and settings.
+        </p>
+
+        <p>
+            Googleによるデータの利用については、以下のGoogleのプライバシーポリシーをご確認ください。
+        </p>
+
+        <p class="en-text">
+            For more information about how Google uses data, please refer to Google's Privacy Policy:
+        </p>
+
+        <p>
+            <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Google プライバシーポリシー / Google Privacy Policy
+            </a>
+        </p>
+
+
+        <!-- 2 -->
+
+        <h2>
+            2. データの収集と保存
+            <span class="en-text">2. Data Collection and Storage</span>
+        </h2>
+
+        <p>
+            本アプリにユーザーが入力した車両情報、メンテナンス記録、カスタム履歴、給油情報、経費情報、写真、メモ、その他の管理データは、ユーザーの端末内（ローカルストレージ）にのみ保存されます。
+        </p>
+
+        <p class="en-text">
+            Vehicle information, maintenance records, customization history, refueling information, expense information, photos, notes, and other management data entered by the User into the App are stored only on the User's device (local storage).
+        </p>
+
+        <p>
+            これらのユーザーデータを、開発者が外部のサーバーへ送信して収集、バックアップ、保存、または閲覧することはありません。
+        </p>
+
+        <p class="en-text">
+            The Developer does not transmit, collect, back up, store, or access this user data on external servers.
+        </p>
+
+        <p>
+            ただし、本アプリに組み込まれている第三者サービス（Google AdMob等）が、そのサービスの提供に必要な情報を独自に収集・処理する場合があります。これらの第三者サービスによるデータの取り扱いについては、それぞれのサービス提供者のプライバシーポリシーをご確認ください。
+        </p>
+
+        <p class="en-text">
+            However, third-party services integrated into the App, such as Google AdMob, may independently collect and process information necessary to provide their services. Please refer to the privacy policies of the respective service providers for information about how such third parties handle data.
+        </p>
+
+
+        <!-- 3 -->
+
+        <h2>
+            3. プレミアム機能の購入に関する情報
+            <span class="en-text">3. Information Regarding Premium Feature Purchases</span>
+        </h2>
+
+        <p>
+            本アプリのプレミアム機能およびPROプランの購入・定期購入に関する決済は、Google Play等のプラットフォーム事業者が提供する決済システムを通じて行われます。
+        </p>
+
+        <p class="en-text">
+            Purchases and subscription payments for Premium Features and the PRO Plan are processed through payment systems provided by platform operators such as Google Play.
+        </p>
+
+        <p>
+            開発者がユーザーのクレジットカード番号、銀行口座情報その他の決済情報を直接取得または保持することはありません。
+        </p>
+
+        <p class="en-text">
+            The Developer does not directly obtain or retain the User's credit card number, bank account information, or other payment information.
+        </p>
+
+        <p>
+            購入や定期購入に関する情報の取り扱いについては、Google Play等の各プラットフォーム事業者のポリシーも適用されます。
+        </p>
+
+        <p class="en-text">
+            The policies of the applicable platform operators, such as Google Play, also apply to the handling of purchase and subscription information.
+        </p>
+
+
+        <!-- 4 -->
+
+        <h2>
+            4. データのバックアップについて
+            <span class="en-text">4. Data Backup</span>
+        </h2>
+
+        <p>
+            本アプリに保存されたデータはユーザーの端末内に保存されるため、端末の紛失、故障、初期化、機種変更、または本アプリのアンインストール等により、データが失われる可能性があります。
+        </p>
+
+        <p class="en-text">
+            Because data stored in the App is saved on the User's device, it may be lost due to loss, malfunction, initialization, replacement, or other issues involving the device, or due to uninstalling the App.
+        </p>
+
+        <p>
+            ユーザーは、本アプリに提供されているデータのエクスポート（バックアップファイルの出力）およびインポート機能を利用し、必要に応じて自己の責任でデータをバックアップするものとします。
+        </p>
+
+        <p class="en-text">
+            Users are responsible for backing up their data as necessary by using the data export (backup file) and import functions provided by the App.
+        </p>
+
+
+        <!-- 5 -->
+
+        <h2>
+            5. 情報の第三者提供について
+            <span class="en-text">5. Sharing of Information with Third Parties</span>
+        </h2>
+
+        <p>
+            開発者は、ユーザーが本アプリに入力した車両情報、メンテナンス記録、写真、メモ等のデータを第三者に提供または販売することはありません。
+        </p>
+
+        <p class="en-text">
+            The Developer does not provide or sell vehicle information, maintenance records, photos, notes, or other data entered into the App to third parties.
+        </p>
+
+        <p>
+            ただし、Google AdMob等の第三者サービスについては、広告配信等のサービス提供に必要な範囲で、各サービス提供者が情報を収集・利用する場合があります。
+        </p>
+
+        <p class="en-text">
+            However, third-party services such as Google AdMob may collect and use information to the extent necessary to provide services such as advertising.
+        </p>
+
+
+        <!-- 6 -->
+
+        <h2>
+            6. 個人情報の安全管理
+            <span class="en-text">6. Security of Personal Information</span>
+        </h2>
+
+        <p>
+            開発者は、ユーザーから直接取得した個人情報等を適切に管理し、不正アクセス、漏えい、紛失、破壊、改ざん等の防止に努めます。
+        </p>
+
+        <p class="en-text">
+            The Developer will appropriately manage personal information obtained directly from Users and take reasonable measures to prevent unauthorized access, disclosure, loss, destruction, or alteration.
+        </p>
+
+        <p>
+            なお、本アプリに入力された車両情報等のデータは開発者のサーバーには保存されません。
+        </p>
+
+        <p class="en-text">
+            The vehicle-related data entered into the App is not stored on servers operated by the Developer.
+        </p>
+
+
+        <!-- 7 -->
+
+        <h2>
+            7. 子どものプライバシーについて
+            <span class="en-text">7. Children's Privacy</span>
+        </h2>
+
+        <p>
+            本アプリは、特定の年齢未満の子どもを対象として設計されたものではありません。保護者の方は、お子様が本アプリを利用する場合、その利用状況について適切に管理してください。
+        </p>
+
+        <p class="en-text">
+            The App is not specifically designed for children under a particular age. Parents or guardians should appropriately supervise their children's use of the App.
+        </p>
+
+
+        <!-- 8 -->
+
+        <h2>
+            8. ポリシーの変更
+            <span class="en-text">8. Changes to This Privacy Policy</span>
+        </h2>
+
+        <p>
+            開発者は、法令の変更、本アプリの機能変更、第三者サービスの変更、その他必要に応じて、本ポリシーを変更することがあります。
+        </p>
+
+        <p class="en-text">
+            The Developer may modify this Privacy Policy as necessary due to changes in applicable laws, changes to the App's features, changes to third-party services, or other circumstances.
+        </p>
+
+        <p>
+            重要な変更がある場合には、本ページへの掲載その他適切な方法によりお知らせします。
+        </p>
+
+        <p class="en-text">
+            If material changes are made, the Developer will notify Users by posting the updated policy on this page or through other appropriate means.
+        </p>
+
+
+        <!-- 9 -->
+
+        <h2>
+            9. お問い合わせについて
+            <span class="en-text">9. Contact Information</span>
+        </h2>
+
+        <div class="contact-box">
+
+            <p>
+                本アプリに関する不具合報告、プライバシーに関するお問い合わせ、その他のお問い合わせは、以下の連絡先までお願いいたします。
+            </p>
+
+            <p class="en-text">
+                For bug reports, privacy-related inquiries, or other questions regarding the App, please contact us using the information below.
+            </p>
+
+            <hr>
+
+            <p>
+                <strong>開発者名：</strong> orishin
+            </p>
+
+            <p class="en-text">
+                <strong>Developer:</strong> orishin
+            </p>
+
+            <p>
+                <strong>連絡先：</strong>
+                <a href="mailto:orm4n5@gmail.com">
+                    orm4n5@gmail.com
+                </a>
+            </p>
+
+            <p class="en-text">
+                <strong>Contact:</strong>
+                <a href="mailto:orm4n5@gmail.com">
+                    orm4n5@gmail.com
+                </a>
+            </p>
+
+        </div>
+
+
+        <!-- Dates -->
+
+        <div class="date-box">
+
+            <p>
+                制定日：2026年6月30日
+            </p>
+
+            <p class="en-text">
+                Effective Date: June 30, 2026
+            </p>
+
+            <p>
+                最終更新日：2026年9月24日
+            </p>
+
+            <p class="en-text">
+                Last Updated: September 24, 2026
+            </p>
+
+        </div>
+
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2026 orishin. All rights reserved.</p>
-</footer>
+
+    <footer>
+        &copy; 2026 orishin. All rights reserved.
+    </footer>
+
+</div>
 
 </body>
 </html>
