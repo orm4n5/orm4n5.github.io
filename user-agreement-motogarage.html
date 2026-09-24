@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>モトガレージ 利用規約・免責事項</title>
+    <title>モトガレージ 利用規約・免責事項 | Moto Garage Terms of Use & Disclaimer</title>
     <style>
         :root {
             --bg-color: #f8f9fa;
@@ -12,6 +12,7 @@
             --accent-color: #007bff;
             --border-color: #e9ecef;
             --heading-color: #343a40;
+            --english-color: #6c757d;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -22,11 +23,14 @@
                 --accent-color: #3b82f6;
                 --border-color: #2d2d2d;
                 --heading-color: #ffffff;
+                --english-color: #aaaaaa;
             }
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, "Noto Sans JP", "Noto Sans",
+                sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
@@ -83,11 +87,17 @@
             margin-bottom: 8px;
         }
 
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 12px;
-            color: #6c757d;
+        .english {
+            color: var(--english-color);
+            margin-top: 6px;
+        }
+
+        .english-heading {
+            color: var(--english-color);
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: -10px;
+            margin-bottom: 18px;
         }
 
         .highlight-box {
@@ -97,83 +107,362 @@
             padding: 16px;
             margin: 20px 0;
         }
+
+        .highlight-box .english {
+            margin-top: 12px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        strong {
+            color: var(--heading-color);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 12px;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+
+            h2 {
+                font-size: 17px;
+            }
+
+            p, li {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="card">
-        <h1>「モトガレージ」利用規約・免責事項</h1>
-        
-        <p>本利用規約（以下「本規約」といいます）は、個人開発者orishin（以下「開発者」といいます）がスマートフォン向けに提供するアプリケーション「モトガレージ」（以下「本アプリ」といいます）の利用条件を定めるものです。ユーザーの皆様（以下「ユーザー」といいます）には、本規約に従って本アプリをご利用いただきます。</p>
 
+        <h1>
+            「モトガレージ」利用規約・免責事項
+            <div class="english-heading">
+                Moto Garage Terms of Use &amp; Disclaimer
+            </div>
+        </h1>
+
+        <!-- Introduction -->
+        <p>
+            本利用規約（以下「本規約」といいます）は、個人開発者orishin（以下「開発者」といいます）がスマートフォン向けに提供するアプリケーション「モトガレージ」（以下「本アプリ」といいます）の利用条件を定めるものです。ユーザーの皆様（以下「ユーザー」といいます）には、本規約に従って本アプリをご利用いただきます。
+        </p>
+
+        <p class="english">
+            These Terms of Use (the “Terms”) set forth the conditions for using the smartphone application “Moto Garage” (the “App”), provided by the individual developer orishin (the “Developer”). By using the App, users (“Users”) agree to use the App in accordance with these Terms.
+        </p>
+
+
+        <!-- Article 1 -->
         <h2>第1条（適用）</h2>
-        <p>本規約は、ユーザーと開発者との間の本アプリの利用に関わる一切の関係に適用されるものとします。ユーザーは本アプリを端末にダウンロードし、利用を開始した時点で、本規約のすべての内容に同意したものとみなされます。</p>
 
+        <p>
+            本規約は、ユーザーと開発者との間の本アプリの利用に関わる一切の関係に適用されるものとします。ユーザーは本アプリを端末にダウンロードし、利用を開始した時点で、本規約のすべての内容に同意したものとみなされます。
+        </p>
+
+        <p class="english">
+            <strong>Article 1 (Application)</strong><br>
+            These Terms shall apply to all relationships between the User and the Developer concerning the use of the App. By downloading and beginning to use the App, the User shall be deemed to have agreed to all provisions of these Terms.
+        </p>
+
+
+        <!-- Article 2 -->
         <h2>第2条（サービス内容および機能制限の解除）</h2>
+
         <ol>
-            <li>本アプリは、車両のメンテナンス記録、カスタム履歴、給油情報、経費情報、書類の保存およびリマインダー等の管理を行うことができる車両総合管理ツールです。</li>
-            <li>本アプリでは、無料版における機能制限を解除するための以下のプレミアム商品（以下「プレミアム機能」といいます）をGoogle Play等のプラットフォームを通じて提供します。
+            <li>
+                本アプリは、車両のメンテナンス記録、カスタム履歴、給油情報、経費情報、書類の保存およびリマインダー等の管理を行うことができる車両総合管理ツールです。
+
+                <p class="english">
+                    The App is a comprehensive vehicle management tool that allows Users to manage vehicle maintenance records, customization history, refueling information, expenses, document storage, reminders, and other related information.
+                </p>
+            </li>
+
+            <li>
+                本アプリでは、無料版における機能制限を解除するための以下のプレミアム商品（以下「プレミアム機能」といいます）をGoogle Play等のプラットフォームを通じて提供します。
+
+                <p class="english">
+                    The App offers the following premium products (the “Premium Features”) through platforms such as Google Play to remove certain limitations of the free version.
+                </p>
+
                 <ul>
-                    <li><strong>広告の完全非表示（買い切り型）:</strong> アプリ内のすべてのバナー広告およびネイティブ広告を永久に非表示にします。</li>
-                    <li><strong>ガレージ枠の追加（買い切り型）:</strong> 複数車両（最大3台まで）の登録および切り替え管理機能を解放します。</li>
-                    <li><strong>PROプラン（月額定期購入型サブスクリプション）:</strong> 「SNS写真メーカー機能」の解放に加え、上記の「広告の完全非表示」「ガレージ枠の追加」を含むすべての機能が制限なく利用可能となるプレミアムプランです。</li>
+                    <li>
+                        <strong>広告の完全非表示（買い切り型）:</strong>
+                        アプリ内のすべてのバナー広告およびネイティブ広告を永久に非表示にします。
+
+                        <p class="english">
+                            <strong>Complete Ad Removal (One-Time Purchase):</strong>
+                            Permanently removes all banner and native advertisements displayed within the App.
+                        </p>
+                    </li>
+
+                    <li>
+                        <strong>ガレージ枠の追加（買い切り型）:</strong>
+                        複数車両（最大3台まで）の登録および切り替え管理機能を解放します。
+
+                        <p class="english">
+                            <strong>Additional Garage Slots (One-Time Purchase):</strong>
+                            Unlocks the ability to register and manage multiple vehicles, up to a maximum of three vehicles.
+                        </p>
+                    </li>
+
+                    <li>
+                        <strong>PROプラン（月額定期購入型サブスクリプション）:</strong>
+                        「SNS写真メーカー機能」の解放に加え、上記の「広告の完全非表示」「ガレージ枠の追加」を含むすべての機能が制限なく利用可能となるプレミアムプランです。
+
+                        <p class="english">
+                            <strong>PRO Plan (Monthly Subscription):</strong>
+                            A premium subscription that unlocks the “Social Media Photo Maker” feature and provides unrestricted access to all features, including “Complete Ad Removal” and “Additional Garage Slots” described above.
+                        </p>
+                    </li>
                 </ul>
             </li>
-            <li>過去の買い切り型プレミアムアイテムの購入履歴があるユーザーが、新たに「PROプラン」を契約する場合、その購入状況（広告非表示のみ、ガレージ拡張のみ、またはその両方）に応じて、初回契約時に段階的な無料トライアル期間（特典オファー）が提供される場合があります。</li>
+
+            <li>
+                過去の買い切り型プレミアムアイテムの購入履歴があるユーザーが、新たに「PROプラン」を契約する場合、その購入状況（広告非表示のみ、ガレージ拡張のみ、またはその両方）に応じて、初回契約時に段階的な無料トライアル期間（特典オファー）が提供される場合があります。
+
+                <p class="english">
+                    If a User who has previously purchased one or more one-time Premium Items subscribes to the PRO Plan, a promotional offer with a tiered free trial period may be provided at the time of the initial subscription, depending on the User’s previous purchases, such as ad removal, garage expansion, or both.
+                </p>
+            </li>
         </ol>
 
+
+        <!-- Article 3 -->
         <h2>第3条（利用料金および決済方法）</h2>
+
         <ol>
-            <li>ユーザーは、各プレミアム機能の購入画面に表示される利用料金を支払うものとします。</li>
-            <li>決済は、Google Inc.等のプラットフォーム事業者が提供する決済システムを通じて行われます。開発者がユーザーのクレジットカード情報や決済詳細を直接取得・保持することはありません。</li>
-            <li><strong>定期購入（サブスクリプション）の自動更新および解約について:</strong>
+            <li>
+                ユーザーは、各プレミアム機能の購入画面に表示される利用料金を支払うものとします。
+
+                <p class="english">
+                    The User shall pay the fees displayed on the purchase screen for each Premium Feature.
+                </p>
+            </li>
+
+            <li>
+                決済は、Google Inc.等のプラットフォーム事業者が提供する決済システムを通じて行われます。開発者がユーザーのクレジットカード情報や決済詳細を直接取得・保持することはありません。
+
+                <p class="english">
+                    Payments are processed through payment systems provided by platform operators such as Google. The Developer does not directly obtain or retain the User’s credit card information or other payment details.
+                </p>
+            </li>
+
+            <li>
+                <strong>定期購入（サブスクリプション）の自動更新および解約について:</strong>
+
+                <p class="english">
+                    <strong>Automatic Renewal and Cancellation of Subscriptions:</strong>
+                </p>
+
                 <ul>
-                    <li>PROプラン（定期購入）は、有効期間終了の24時間前までに解約手続きが行われない限り、自動的に同期間更新され、利用料金が請求されます。</li>
-                    <li>自動更新の解約手続きは、ユーザーが利用しているOSの公式アカウント設定画面（Google Playストアの「定期購入」等）より、ユーザー自身で行う必要があります。アプリをアンインストール、または端末を削除しただけでは自動更新は停止しません。</li>
+                    <li>
+                        PROプラン（定期購入）は、有効期間終了の24時間前までに解約手続きが行われない限り、自動的に同期間更新され、利用料金が請求されます。
+
+                        <p class="english">
+                            Unless the PRO Plan subscription is cancelled at least 24 hours before the end of the current subscription period, it will automatically renew for the same period and the applicable subscription fee will be charged.
+                        </p>
+                    </li>
+
+                    <li>
+                        自動更新の解約手続きは、ユーザーが利用しているOSの公式アカウント設定画面（Google Playストアの「定期購入」等）より、ユーザー自身で行う必要があります。アプリをアンインストール、または端末を削除しただけでは自動更新は停止しません。
+
+                        <p class="english">
+                            The User must cancel automatic renewal through the official account settings of the applicable operating system, such as the “Subscriptions” section of the Google Play Store. Simply uninstalling the App or removing the App from a device does not cancel the subscription or stop automatic renewal.
+                        </p>
+                    </li>
                 </ul>
             </li>
-            <li>購入されたプレミアム機能およびサブスクリプション料金の払い戻しは、プラットフォーム事業者の返金規定に従うものとし、開発者は直接の返金対応を行いません。</li>
+
+            <li>
+                購入されたプレミアム機能およびサブスクリプション料金の払い戻しは、プラットフォーム事業者の返金規定に従うものとし、開発者は直接の返金対応を行いません。
+
+                <p class="english">
+                    Refunds for purchased Premium Features and subscription fees shall be handled in accordance with the refund policies of the applicable platform operator. The Developer does not provide refunds directly.
+                </p>
+            </li>
         </ol>
 
+
+        <!-- Article 4 -->
         <h2>第4条（ユーザーデータの管理と自己責任）</h2>
+
         <div class="highlight-box">
             <strong>【重要：データ保存に関するご注意】</strong>
-            <p>本アプリに入力された車両情報、各種メンテナンス・カスタム等の記録、写真、メモ、および設定データは、すべてユーザーの端末内（ローカルストレージ）にのみ保存されます。開発者がこれらのデータを外部のサーバー等に収集、バックアップ、または閲覧することは一切ありません。</p>
+
+            <p>
+                本アプリに入力された車両情報、各種メンテナンス・カスタム等の記録、写真、メモ、および設定データは、すべてユーザーの端末内（ローカルストレージ）にのみ保存されます。開発者がこれらのデータを外部のサーバー等に収集、バックアップ、または閲覧することは一切ありません。
+            </p>
+
+            <p class="english">
+                <strong>【Important: Data Storage】</strong><br>
+                Vehicle information, maintenance and customization records, photographs, notes, settings, and other data entered into the App are stored only on the User’s device (local storage). The Developer does not collect, back up, or access this data through external servers or other means.
+            </p>
         </div>
+
         <ol>
-            <li>本アプリ内のデータは、ユーザー自身の責任において管理されるものとします。端末の紛失、故障、機種変更、またはアプリの削除（アンインストール）等によって生じたデータの消失について、開発者は復元等の義務を負わず、一切の責任を負いません。</li>
-            <li>ユーザーは、本アプリが提供するデータのエクスポート（バックアップファイルの出力）およびインポート機能を活用し、定期的に自己の責任でデータのバックアップを行うものとします。</li>
+            <li>
+                本アプリ内のデータは、ユーザー自身の責任において管理されるものとします。端末の紛失、故障、機種変更、またはアプリの削除（アンインストール）等によって生じたデータの消失について、開発者は復元等の義務を負わず、一切の責任を負いません。
+
+                <p class="english">
+                    Data stored within the App shall be managed by the User at their own responsibility. The Developer shall not be obligated to restore or recover data lost due to loss, malfunction, replacement, or other issues involving the device, or due to deletion (uninstallation) of the App, and shall not be liable for such loss.
+                </p>
+            </li>
+
+            <li>
+                ユーザーは、本アプリが提供するデータのエクスポート（バックアップファイルの出力）およびインポート機能を活用し、定期的に自己の責任でデータのバックアップを行うものとします。
+
+                <p class="english">
+                    The User is responsible for regularly backing up their data by using the data export (backup file) and import functions provided by the App.
+                </p>
+            </li>
         </ol>
 
+
+        <!-- Article 5 -->
         <h2>第5条（免責事項）</h2>
+
         <ol>
-            <li><strong>車両トラブル・事故に関する免責:</strong> 本アプリはユーザーの車両管理を補助するためのものであり、入力された記録の正確性や車両の安全性を保証するものではありません。本アプリの利用、または入力情報の誤りやリマインダー通知の不達等に起因して発生した車両の不具合、故障、事故、またはその他の損害について、開発者は一切の責任を負いません。実際の点検・整備等は、必ずユーザー自身の判断のもと、資格を持つ専門家のアドバイスに従って行ってください。</li>
-            <li><strong>通知機能に関する免責:</strong> 本アプリのアラート機能（期日通知等）は、アプリ起動時のシステム制御等に基づき動作します。OSの仕様、省電力設定、タスクキル、またはその他の原因により、通知の遅延や不達が発生した場合であっても、開発者はこれにより生じた損害について責任を負いません。</li>
-            <li><strong>サービスの中断・変更に関する免責:</strong> 開発者は、ユーザーに事前通知することなく、本アプリの内容を変更、中断、または終了することができ、これによりユーザーに生じた不利益や損害について一切の責任を負いません。</li>
+            <li>
+                <strong>車両トラブル・事故に関する免責:</strong>
+                本アプリはユーザーの車両管理を補助するためのものであり、入力された記録の正確性や車両の安全性を保証するものではありません。本アプリの利用、または入力情報の誤りやリマインダー通知の不達等に起因して発生した車両の不具合、故障、事故、またはその他の損害について、開発者は一切の責任を負いません。実際の点検・整備等は、必ずユーザー自身の判断のもと、資格を持つ専門家のアドバイスに従って行ってください。
+
+                <p class="english">
+                    <strong>Disclaimer Regarding Vehicle Problems and Accidents:</strong>
+                    The App is intended only to assist Users in managing their vehicles and does not guarantee the accuracy of entered records or the safety of any vehicle. The Developer shall not be liable for vehicle problems, malfunctions, accidents, or any other damages arising from the use of the App, errors in entered information, failure or delay of reminders, or other causes. Actual inspections, maintenance, and repairs should always be performed based on the User’s own judgment and in accordance with advice from qualified professionals.
+                </p>
+            </li>
+
+            <li>
+                <strong>通知機能に関する免責:</strong>
+                本アプリのアラート機能（期日通知等）は、アプリ起動時のシステム制御等に基づき動作します。OSの仕様、省電力設定、タスクキル、またはその他の原因により、通知の遅延や不達が発生した場合であっても、開発者はこれにより生じた損害について責任を負いません。
+
+                <p class="english">
+                    <strong>Disclaimer Regarding Notifications:</strong>
+                    The App’s alert functions, including due-date notifications, operate based on system controls and other factors related to the App and operating system. The Developer shall not be liable for any damages arising from delayed or failed notifications caused by operating system specifications, power-saving settings, task termination, or other circumstances.
+                </p>
+            </li>
+
+            <li>
+                <strong>サービスの中断・変更に関する免責:</strong>
+                開発者は、ユーザーに事前通知することなく、本アプリの内容を変更、中断、または終了することができ、これによりユーザーに生じた不利益や損害について一切の責任を負いません。
+
+                <p class="english">
+                    <strong>Disclaimer Regarding Changes or Interruption of the Service:</strong>
+                    The Developer may modify, suspend, or terminate the App or any of its features without prior notice to Users. The Developer shall not be liable for any disadvantage, loss, or damage incurred by Users as a result of such modification, suspension, or termination.
+                </p>
+            </li>
         </ol>
 
+
+        <!-- Article 6 -->
         <h2>第6条（禁止事項）</h2>
-        <p>ユーザーは、本アプリの利用にあたり、以下の行為を行ってはなりません。</p>
+
+        <p>
+            ユーザーは、本アプリの利用にあたり、以下の行為を行ってはなりません。
+        </p>
+
+        <p class="english">
+            <strong>Article 6 (Prohibited Activities)</strong><br>
+            When using the App, Users shall not engage in any of the following activities.
+        </p>
+
         <ul>
-            <li>本アプリの解析、改ざん、リバースエンジニアリング、逆コンパイル、または逆アセンブル。</li>
-            <li>不正な手段を用いて、有料プレミアム機能やPROプランを不正に解放・利用する行為。</li>
-            <li>開発者または第三者の著作権、知的財産権を侵害する行為。</li>
-            <li>その他、開発者が不適切と判断する行為。</li>
+            <li>
+                本アプリの解析、改ざん、リバースエンジニアリング、逆コンパイル、または逆アセンブル。
+
+                <p class="english">
+                    Analyzing, modifying, reverse engineering, decompiling, or disassembling the App.
+                </p>
+            </li>
+
+            <li>
+                不正な手段を用いて、有料プレミアム機能やPROプランを不正に解放・利用する行為。
+
+                <p class="english">
+                    Illegally unlocking or using paid Premium Features or the PRO Plan through unauthorized means.
+                </p>
+            </li>
+
+            <li>
+                開発者または第三者の著作権、知的財産権を侵害する行為。
+
+                <p class="english">
+                    Infringing upon the copyrights, intellectual property rights, or other rights of the Developer or any third party.
+                </p>
+            </li>
+
+            <li>
+                その他、開発者が不適切と判断する行為。
+
+                <p class="english">
+                    Any other conduct that the Developer reasonably considers inappropriate.
+                </p>
+            </li>
         </ul>
 
-        <h2>第7条（規約の変更）</h2>
-        <p>開発者は、必要と判断した場合には、ユーザーに事前通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、本アプリ内または開発者が指定するウェブサイト上に掲示された時点から効力を生じるものとし、変更後にユーザーが本アプリを利用した場合、変更後の規約に同意したものとみなされます。</p>
 
+        <!-- Article 7 -->
+        <h2>第7条（規約の変更）</h2>
+
+        <p>
+            開発者は、必要と判断した場合には、ユーザーに事前通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、本アプリ内または開発者が指定するウェブサイト上に掲示された時点から効力を生じるものとし、変更後にユーザーが本アプリを利用した場合、変更後の規約に同意したものとみなされます。
+        </p>
+
+        <p class="english">
+            <strong>Article 7 (Changes to These Terms)</strong><br>
+            The Developer may modify these Terms at any time when deemed necessary, without prior notice to Users. The revised Terms shall become effective when posted within the App or on a website designated by the Developer. If a User continues to use the App after the revised Terms become effective, the User shall be deemed to have agreed to the revised Terms.
+        </p>
+
+
+        <!-- Article 8 -->
         <h2>第8条（準拠法・裁判管轄）</h2>
+
         <ol>
-            <li>本規約の解釈にあたっては、日本法を準拠法とします。</li>
-            <li>本アプリまたは本規約に関して紛争が生じた場合には、開発者の居住地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</li>
+            <li>
+                本規約の解釈にあたっては、日本法を準拠法とします。
+
+                <p class="english">
+                    These Terms shall be governed by and construed in accordance with the laws of Japan.
+                </p>
+            </li>
+
+            <li>
+                本アプリまたは本規約に関して紛争が生じた場合には、開発者の居住地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。
+
+                <p class="english">
+                    In the event of any dispute arising in connection with the App or these Terms, the court having jurisdiction over the Developer’s place of residence shall have exclusive jurisdiction as the court of first instance.
+                </p>
+            </li>
         </ol>
 
-        <p style="text-align: right; margin-top: 40px; font-weight: bold;">制定日：2026年6月30日</p>
+
+        <!-- Date -->
+        <p style="text-align: right; margin-top: 40px; font-weight: bold;">
+            制定日：2026年6月30日<br>
+            <span class="english">
+                Effective Date: June 30, 2026
+            </span>
+        </p>
+
     </div>
-    
+
     <div class="footer">
         &copy; 2026 orishin. All rights reserved.
     </div>
